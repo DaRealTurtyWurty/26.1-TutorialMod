@@ -1,6 +1,6 @@
-package dev.turtywurty.tutorialmod.platform;
+package dev.turtywurty.tutorialmod.services;
 
-import dev.turtywurty.tutorialmod.platform.services.IPlatformHelper;
+import dev.turtywurty.tutorialmod.services.types.IPlatformHelper;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 

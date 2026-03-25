@@ -1,4 +1,4 @@
-package dev.turtywurty.tutorialmod.platform.services;
+package dev.turtywurty.tutorialmod.services.types;
 
 public interface IPlatformHelper {
     /**

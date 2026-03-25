@@ -1,6 +1,7 @@
 package dev.turtywurty.tutorialmod;
 
-import dev.turtywurty.tutorialmod.platform.Services;
+import dev.turtywurty.tutorialmod.init.ModItems;
+import dev.turtywurty.tutorialmod.services.Services;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Items;
 
@@ -24,5 +25,7 @@ public class CommonClass {
         if (Services.PLATFORM.isModLoaded("tutorialmod")) {
             Constants.LOG.info("Hello to tutorialmod");
         }
+
+        ModItems.load();
     }
 }

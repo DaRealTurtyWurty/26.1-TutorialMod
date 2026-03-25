@@ -1,5 +1,6 @@
 package dev.turtywurty.tutorialmod;
 
+import dev.turtywurty.tutorialmod.services.NeoForgeRegistryHelper;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
@@ -13,5 +14,6 @@ public class TutorialMod {
         // Use NeoForge to bootstrap the Common mod.
         Constants.LOG.info("Hello NeoForge world!");
         CommonClass.init();
+        NeoForgeRegistryHelper.register(eventBus);
     }
 }
