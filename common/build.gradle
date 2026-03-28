@@ -12,6 +12,16 @@ neoForge {
     }
 }
 
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
+def commonResourcesDir = layout.buildDirectory.dir('generated/commonResources')
+def syncCommonResources = tasks.register('syncCommonResources', Sync) {
+    from sourceSets.main.resources
+    into commonResourcesDir
+}
+
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     // fabric and neoforge both bundle mixinextras, so it is safe to use it in common
@@ -32,7 +42,9 @@ configurations {
 
 artifacts {
     commonJava sourceSets.main.java.sourceDirectories.singleFile
-    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+    commonResources(commonResourcesDir) {
+        builtBy syncCommonResources
+    }
 }
 
 // Implement mcgradleconventions loader attribute
@@ -45,7 +57,7 @@ def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', Strin
     }
 }
 sourceSets.configureEach {
-    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
         configurations.named("$variant") {
             attributes {
                 attribute(loaderAttribute, 'common')
