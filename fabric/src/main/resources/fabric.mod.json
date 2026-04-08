@@ -13,9 +13,6 @@
     "entrypoints": {
         "main": [
             "dev.turtywurty.tutorialmod.TutorialMod"
-        ],
-        "fabric-datagen": [
-            "dev.turtywurty.tutorialmod.TutorialModFabricDataGen"
         ]
     },
     "depends": {

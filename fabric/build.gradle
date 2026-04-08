@@ -29,15 +29,6 @@ loom {
             ideConfigGenerated(true)
             runDir('runs/server')
         }
-        datagenClient {
-            client()
-            setConfigName('Fabric Data')
-            ideConfigGenerated(true)
-            runDir('runs/datagen')
-            vmArg('-Dfabric-api.datagen')
-            vmArg("-Dfabric-api.datagen.output-dir=${project(':common').file('src/generated/resources').getAbsolutePath()}")
-            vmArg("-Dfabric-api.datagen.modid=${mod_id}")
-        }
     }
 }
 
@@ -51,7 +42,7 @@ def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', Strin
     }
 }
 sourceSets.configureEach {
-    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant ->
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName].each { variant->
         configurations.named("$variant") {
             attributes {
                 attribute(loaderAttribute, 'fabric')
