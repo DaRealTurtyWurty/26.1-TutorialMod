@@ -2,6 +2,7 @@ package dev.turtywurty.tutorialmod.datagen;
 
 import dev.turtywurty.tutorialmod.Constants;
 import dev.turtywurty.tutorialmod.init.ModBlocks;
+import dev.turtywurty.tutorialmod.init.ModEntityTypes;
 import dev.turtywurty.tutorialmod.init.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
@@ -19,6 +20,7 @@ public class TutorialModEnglishLanguageProvider extends LanguageProvider {
         add(ModItems.EXAMPLE_ITEM2.get(), "Example Item 2");
         add(ModBlocks.EXAMPLE_BLOCK.block().get(), "Example Block");
         add(ModBlocks.EXAMPLE_BLOCK.item().get(), "Example Block");
+        add(ModEntityTypes.EXAMPLE_ENTITY.get(), "Example Entity");
     }
 
     private void add(Component component, String value) {

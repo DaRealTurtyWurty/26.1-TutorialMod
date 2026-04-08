@@ -1,25 +1,28 @@
 {
-    "schemaVersion": 1,
-    "id": "${mod_id}",
-    "version": "${version}",
-    "name": "${mod_name}",
-    "description": "${description}",
-    "authors": [
-        "${mod_author}"
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "license": "${license}",
+  "icon": "${mod_id}.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.turtywurty.tutorialmod.TutorialMod"
     ],
-    "license": "${license}",
-    "icon": "${mod_id}.png",
-    "environment": "*",
-    "entrypoints": {
-        "main": [
-            "dev.turtywurty.tutorialmod.TutorialMod"
-        ]
-    },
-    "depends": {
-        "fabricloader": ">=${fabric_loader_version}",
-        "fabric-api": "*",
-        "minecraft": "~${minecraft_version}",
-        "java": ">=${java_version}"
-    }
+    "client": [
+      "dev.turtywurty.tutorialmod.TutorialModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=${java_version}"
+  }
 }
   

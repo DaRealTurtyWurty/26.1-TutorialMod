@@ -5,6 +5,8 @@ import dev.turtywurty.tutorialmod.services.util.BlockWithItemRegistryHandle;
 import dev.turtywurty.tutorialmod.services.util.RegistryHandle;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -30,11 +32,17 @@ public interface IRegistryHelper {
 
     <T extends Item> RegistryHandle<T> registerItem(String name, Function<Item.Properties, T> item);
 
+    <T extends Entity> RegistryHandle<EntityType<T>> registerEntityType(String name, EntityType.Builder<T> builder);
+
     static ResourceKey<Block> blockKey(String name) {
         return ResourceKey.create(Registries.BLOCK, Constants.id(name));
     }
 
     static ResourceKey<Item> itemKey(String name) {
         return ResourceKey.create(Registries.ITEM, Constants.id(name));
+    }
+
+    static ResourceKey<EntityType<?>> entityTypeKey(String name) {
+        return ResourceKey.create(Registries.ENTITY_TYPE, Constants.id(name));
     }
 }

@@ -1,5 +1,6 @@
 {
   "block.tutorialmod.example_block": "Example Block",
+  "entity.tutorialmod.example_entity": "Example Entity",
   "item.tutorialmod.example_block": "Example Block",
   "item.tutorialmod.example_item": "Example Item",
   "item.tutorialmod.example_item2": "Example Item 2"

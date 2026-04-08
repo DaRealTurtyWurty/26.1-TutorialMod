@@ -1,6 +1,8 @@
 package dev.turtywurty.tutorialmod;
 
+import dev.turtywurty.tutorialmod.services.Services;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 
 public class TutorialMod implements ModInitializer {
     @Override
@@ -12,5 +14,6 @@ public class TutorialMod implements ModInitializer {
         // Use Fabric to bootstrap the Common mod.
         Constants.LOG.info("Hello Fabric world!");
         CommonClass.init();
+        Services.ATTRIBUTES.applyEntityAttributeRegistrations(FabricDefaultAttributeRegistry::register);
     }
 }

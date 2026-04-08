@@ -6,6 +6,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -55,6 +57,24 @@ public class FabricRegistryHelper implements IRegistryHelper {
 
             @Override
             public T get() {
+                return registered;
+            }
+        };
+    }
+
+    @Override
+    public <T extends Entity> RegistryHandle<EntityType<T>> registerEntityType(String name, EntityType.Builder<T> builder) {
+        ResourceKey<EntityType<?>> key = IRegistryHelper.entityTypeKey(name);
+        Identifier id = key.identifier();
+        EntityType<T> registered = Registry.register(BuiltInRegistries.ENTITY_TYPE, id, builder.build(key));
+        return new RegistryHandle<>() {
+            @Override
+            public Identifier id() {
+                return id;
+            }
+
+            @Override
+            public EntityType<T> get() {
                 return registered;
             }
         };

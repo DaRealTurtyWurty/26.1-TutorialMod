@@ -1,6 +1,8 @@
 package dev.turtywurty.tutorialmod;
 
 import dev.turtywurty.tutorialmod.init.ModBlocks;
+import dev.turtywurty.tutorialmod.init.ModEntityAttributes;
+import dev.turtywurty.tutorialmod.init.ModEntityTypes;
 import dev.turtywurty.tutorialmod.init.ModItems;
 import dev.turtywurty.tutorialmod.services.Services;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -29,5 +31,7 @@ public class CommonClass {
 
         ModBlocks.load();
         ModItems.load();
+        ModEntityTypes.load();
+        ModEntityAttributes.load();
     }
 }
