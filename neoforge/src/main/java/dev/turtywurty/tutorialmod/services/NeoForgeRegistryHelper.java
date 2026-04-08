@@ -17,7 +17,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class NeoForgeRegistryHelper implements IRegistryHelper {
-    private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Constants.MOD_ID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Constants.MOD_ID);
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Constants.MOD_ID);
 
     public static void register(IEventBus eventBus) {
