@@ -1,7 +1,13 @@
 {
   "block.tutorialmod.example_block": "Example Block",
   "entity.tutorialmod.example_entity": "Example Entity",
+  "item.tutorialmod.example_axe": "Example Axe",
   "item.tutorialmod.example_block": "Example Block",
+  "item.tutorialmod.example_hoe": "Example Hoe",
   "item.tutorialmod.example_item": "Example Item",
-  "item.tutorialmod.example_item2": "Example Item 2"
+  "item.tutorialmod.example_item2": "Example Item 2",
+  "item.tutorialmod.example_pickaxe": "Example Pickaxe",
+  "item.tutorialmod.example_shovel": "Example Shovel",
+  "item.tutorialmod.example_spear": "Example Spear",
+  "item.tutorialmod.example_sword": "Example Sword"
 }

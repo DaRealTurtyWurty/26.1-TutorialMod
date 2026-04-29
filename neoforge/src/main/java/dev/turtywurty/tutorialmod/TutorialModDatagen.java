@@ -1,9 +1,6 @@
 package dev.turtywurty.tutorialmod;
 
-import dev.turtywurty.tutorialmod.datagen.TutorialModBlockTagProvider;
-import dev.turtywurty.tutorialmod.datagen.TutorialModEnglishLanguageProvider;
-import dev.turtywurty.tutorialmod.datagen.TutorialModLootTableProvider;
-import dev.turtywurty.tutorialmod.datagen.TutorialModModelProvider;
+import dev.turtywurty.tutorialmod.datagen.*;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 public final class TutorialModDatagen {
@@ -14,6 +11,7 @@ public final class TutorialModDatagen {
         event.createProvider(TutorialModModelProvider::new);
         event.createProvider(TutorialModEnglishLanguageProvider::new);
         event.createProvider(TutorialModBlockTagProvider::new);
+        event.createProvider(TutorialModItemTagProvider::new);
         event.createProvider(TutorialModLootTableProvider::new);
     }
 }

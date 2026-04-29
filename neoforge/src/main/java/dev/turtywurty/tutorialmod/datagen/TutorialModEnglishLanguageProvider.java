@@ -21,6 +21,12 @@ public class TutorialModEnglishLanguageProvider extends LanguageProvider {
         add(ModBlocks.EXAMPLE_BLOCK.block().get(), "Example Block");
         add(ModBlocks.EXAMPLE_BLOCK.item().get(), "Example Block");
         add(ModEntityTypes.EXAMPLE_ENTITY.get(), "Example Entity");
+        add(ModItems.EXAMPLE_SWORD.get(), "Example Sword");
+        add(ModItems.EXAMPLE_SPEAR.get(), "Example Spear");
+        add(ModItems.EXAMPLE_PICKAXE.get(), "Example Pickaxe");
+        add(ModItems.EXAMPLE_SHOVEL.get(), "Example Shovel");
+        add(ModItems.EXAMPLE_AXE.get(), "Example Axe");
+        add(ModItems.EXAMPLE_HOE.get(), "Example Hoe");
     }
 
     private void add(Component component, String value) {

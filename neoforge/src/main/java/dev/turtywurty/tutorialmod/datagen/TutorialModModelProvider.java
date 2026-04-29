@@ -20,5 +20,12 @@ public class TutorialModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.EXAMPLE_ITEM2.get(), ModelTemplates.FLAT_ITEM);
 
         blockModels.createTrivialCube(ModBlocks.EXAMPLE_BLOCK.block().get());
+
+        itemModels.generateFlatItem(ModItems.EXAMPLE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_SPEAR.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_PICKAXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
     }
 }
