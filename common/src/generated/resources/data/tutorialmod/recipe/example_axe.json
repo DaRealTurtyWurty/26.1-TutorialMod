@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": "tutorialmod:example_item",
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "EE",
+    "ES",
+    " S"
+  ],
+  "result": {
+    "id": "tutorialmod:example_axe"
+  }
+}

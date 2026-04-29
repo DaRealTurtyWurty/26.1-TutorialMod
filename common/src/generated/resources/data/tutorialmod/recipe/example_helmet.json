@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "E": "tutorialmod:example_item"
+  },
+  "pattern": [
+    "EEE",
+    "E E"
+  ],
+  "result": {
+    "id": "tutorialmod:example_helmet"
+  }
+}

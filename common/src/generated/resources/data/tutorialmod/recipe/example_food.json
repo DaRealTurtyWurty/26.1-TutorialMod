@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "2": "tutorialmod:example_item2",
+    "E": "tutorialmod:example_item"
+  },
+  "pattern": [
+    "E2"
+  ],
+  "result": {
+    "id": "tutorialmod:example_food"
+  }
+}
