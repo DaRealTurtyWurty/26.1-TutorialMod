@@ -13,5 +13,6 @@ public final class TutorialModDatagen {
         event.createProvider(TutorialModBlockTagProvider::new);
         event.createProvider(TutorialModItemTagProvider::new);
         event.createProvider(TutorialModLootTableProvider::new);
+        event.createProvider(TutorialModEquipmentAssetProvider::new);
     }
 }

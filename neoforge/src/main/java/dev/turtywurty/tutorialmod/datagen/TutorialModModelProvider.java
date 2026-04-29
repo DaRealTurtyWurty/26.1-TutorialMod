@@ -27,5 +27,9 @@ public class TutorialModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.EXAMPLE_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ModItems.EXAMPLE_SHOVEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(ModItems.EXAMPLE_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_HELMET.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_LEGGINGS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_BOOTS.get(), ModelTemplates.FLAT_ITEM);
     }
 }

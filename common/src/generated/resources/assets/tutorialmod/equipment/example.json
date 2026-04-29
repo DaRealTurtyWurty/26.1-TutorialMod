@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "tutorialmod:example"
+      }
+    ],
+    "humanoid_baby": [
+      {
+        "texture": "tutorialmod:example"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "tutorialmod:example"
+      }
+    ]
+  }
+}

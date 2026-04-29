@@ -6,6 +6,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.equipment.ArmorType;
 
 public final class ModItems {
     private ModItems() {
@@ -37,4 +38,18 @@ public final class ModItems {
 
     public static final RegistryHandle<HoeItem> EXAMPLE_HOE = Services.REGISTRY.registerItem("example_hoe",
             properties -> new HoeItem(ModToolMaterials.EXAMPLE_TOOL_MATERIAL, -2.0F, -1.0F, properties));
+
+    public static final RegistryHandle<Item> EXAMPLE_HELMET = Services.REGISTRY.registerItem("example_helmet",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.EXAMPLE_ARMOR_MATERIAL, ArmorType.HELMET)));
+
+    public static final RegistryHandle<Item> EXAMPLE_CHESTPLATE = Services.REGISTRY.registerItem("example_chestplate",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.EXAMPLE_ARMOR_MATERIAL, ArmorType.CHESTPLATE)));
+
+    public static final RegistryHandle<Item> EXAMPLE_LEGGINGS = Services.REGISTRY.registerItem("example_leggings",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.EXAMPLE_ARMOR_MATERIAL, ArmorType.LEGGINGS)));
+
+    public static final RegistryHandle<Item> EXAMPLE_BOOTS = Services.REGISTRY.registerItem("example_boots",
+            properties -> new Item(properties.humanoidArmor(ModArmorMaterials.EXAMPLE_ARMOR_MATERIAL, ArmorType.BOOTS)));
+
+
 }

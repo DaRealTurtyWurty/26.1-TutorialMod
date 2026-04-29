@@ -27,6 +27,10 @@ public class TutorialModEnglishLanguageProvider extends LanguageProvider {
         add(ModItems.EXAMPLE_SHOVEL.get(), "Example Shovel");
         add(ModItems.EXAMPLE_AXE.get(), "Example Axe");
         add(ModItems.EXAMPLE_HOE.get(), "Example Hoe");
+        add(ModItems.EXAMPLE_HELMET.get(), "Example Helmet");
+        add(ModItems.EXAMPLE_CHESTPLATE.get(), "Example Chestplate");
+        add(ModItems.EXAMPLE_LEGGINGS.get(), "Example Leggings");
+        add(ModItems.EXAMPLE_BOOTS.get(), "Example Boots");
     }
 
     private void add(Component component, String value) {
