@@ -2,6 +2,7 @@ package dev.turtywurty.tutorialmod.datagen;
 
 import dev.turtywurty.tutorialmod.Constants;
 import dev.turtywurty.tutorialmod.init.ModBlocks;
+import dev.turtywurty.tutorialmod.init.ModCreativeTabs;
 import dev.turtywurty.tutorialmod.init.ModEntityTypes;
 import dev.turtywurty.tutorialmod.init.ModItems;
 import net.minecraft.data.PackOutput;
@@ -31,6 +32,7 @@ public class TutorialModEnglishLanguageProvider extends LanguageProvider {
         add(ModItems.EXAMPLE_CHESTPLATE.get(), "Example Chestplate");
         add(ModItems.EXAMPLE_LEGGINGS.get(), "Example Leggings");
         add(ModItems.EXAMPLE_BOOTS.get(), "Example Boots");
+        add(ModCreativeTabs.EXAMPLE_TAB.get().getDisplayName(), "Example Tab");
     }
 
     private void add(Component component, String value) {

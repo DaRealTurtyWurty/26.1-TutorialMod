@@ -1,9 +1,6 @@
 package dev.turtywurty.tutorialmod;
 
-import dev.turtywurty.tutorialmod.init.ModBlocks;
-import dev.turtywurty.tutorialmod.init.ModEntityAttributes;
-import dev.turtywurty.tutorialmod.init.ModEntityTypes;
-import dev.turtywurty.tutorialmod.init.ModItems;
+import dev.turtywurty.tutorialmod.init.*;
 import dev.turtywurty.tutorialmod.services.Services;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Items;
@@ -33,5 +30,6 @@ public class CommonClass {
         ModItems.load();
         ModEntityTypes.load();
         ModEntityAttributes.load();
+        ModCreativeTabs.load();
     }
 }

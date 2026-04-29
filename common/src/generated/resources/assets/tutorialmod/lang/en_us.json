@@ -13,5 +13,6 @@
   "item.tutorialmod.example_pickaxe": "Example Pickaxe",
   "item.tutorialmod.example_shovel": "Example Shovel",
   "item.tutorialmod.example_spear": "Example Spear",
-  "item.tutorialmod.example_sword": "Example Sword"
+  "item.tutorialmod.example_sword": "Example Sword",
+  "itemGroup.tutorialmodexample_tab": "Example Tab"
 }
