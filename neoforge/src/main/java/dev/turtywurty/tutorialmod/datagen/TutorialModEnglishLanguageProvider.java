@@ -33,6 +33,7 @@ public class TutorialModEnglishLanguageProvider extends LanguageProvider {
         add(ModItems.EXAMPLE_LEGGINGS.get(), "Example Leggings");
         add(ModItems.EXAMPLE_BOOTS.get(), "Example Boots");
         add(ModCreativeTabs.EXAMPLE_TAB.get().getDisplayName(), "Example Tab");
+        add(ModItems.EXAMPLE_FOOD.get(), "Example Food");
     }
 
     private void add(Component component, String value) {

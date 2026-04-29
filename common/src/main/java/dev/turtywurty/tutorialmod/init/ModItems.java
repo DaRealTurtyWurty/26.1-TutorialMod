@@ -51,5 +51,6 @@ public final class ModItems {
     public static final RegistryHandle<Item> EXAMPLE_BOOTS = Services.REGISTRY.registerItem("example_boots",
             properties -> new Item(properties.humanoidArmor(ModArmorMaterials.EXAMPLE_ARMOR_MATERIAL, ArmorType.BOOTS)));
 
-
+    public static final RegistryHandle<Item> EXAMPLE_FOOD = Services.REGISTRY.registerItem("example_food",
+            properties -> new Item(properties.food(ModFoods.EXAMPLE_FOOD_PROPERTIES, ModFoods.EXAMPLE_FOOD_CONSUMABLE)));
 }

@@ -31,5 +31,6 @@ public class TutorialModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.EXAMPLE_CHESTPLATE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.EXAMPLE_LEGGINGS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.EXAMPLE_BOOTS.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.EXAMPLE_FOOD.get(), ModelTemplates.FLAT_ITEM);
     }
 }

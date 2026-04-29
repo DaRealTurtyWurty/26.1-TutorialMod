@@ -27,6 +27,7 @@ public class CommonClass {
         }
 
         ModBlocks.load();
+        ModConsumeEffectTypes.load();
         ModItems.load();
         ModEntityTypes.load();
         ModEntityAttributes.load();
