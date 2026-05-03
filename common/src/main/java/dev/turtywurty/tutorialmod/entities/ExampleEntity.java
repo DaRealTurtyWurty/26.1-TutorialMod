@@ -1,6 +1,7 @@
 package dev.turtywurty.tutorialmod.entities;
 
 import dev.turtywurty.tutorialmod.init.ModItems;
+import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
@@ -16,7 +17,14 @@ import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
+@SuppressWarnings("resource")
 public class ExampleEntity extends TamableAnimal {
+    public final AnimationState idleAnimationState = new AnimationState();
+    public final AnimationState tameAnimationState = new AnimationState();
+    public final AnimationState sitAnimationState = new AnimationState();
+
+    private boolean pendingSitAnimation;
+
     public ExampleEntity(EntityType<? extends ExampleEntity> type, Level level) {
         super(type, level);
     }
@@ -56,8 +64,6 @@ public class ExampleEntity extends TamableAnimal {
                 itemStack.consume(1, player);
 
                 tame(player);
-                this.navigation.stop();
-                setTarget(null);
                 setOrderedToSit(true);
                 level().broadcastEntityEvent(this, EntityEvent.TAMING_SUCCEEDED);
                 return InteractionResult.SUCCESS;
@@ -67,9 +73,6 @@ public class ExampleEntity extends TamableAnimal {
                     return result;
 
                 setOrderedToSit(!isOrderedToSit());
-                this.jumping = false;
-                this.navigation.stop();
-                setTarget(null);
                 return InteractionResult.SUCCESS;
             }
         }
@@ -86,5 +89,60 @@ public class ExampleEntity extends TamableAnimal {
         if (!level().isClientSide()) {
             EntityType.PIG.spawn((ServerLevel) level(), blockPosition(), EntitySpawnReason.SPAWN_ITEM_USE);
         }
+    }
+
+    @Override
+    public void tick() {
+        if (level().isClientSide()) {
+            this.idleAnimationState.animateWhen(!isInWater() && !this.walkAnimation.isMoving(), this.tickCount);
+
+            if (this.tameAnimationState.isStarted() && this.tameAnimationState.getTimeInMillis(this.tickCount) > 1500L) {
+                this.tameAnimationState.stop();
+                if (this.pendingSitAnimation) {
+                    this.sitAnimationState.startIfStopped(this.tickCount);
+                    this.pendingSitAnimation = false;
+                }
+            }
+        }
+
+        super.tick();
+    }
+
+    @Override
+    public void handleEntityEvent(byte id) {
+        super.handleEntityEvent(id);
+
+        if (id == EntityEvent.TAMING_SUCCEEDED) {
+            this.tameAnimationState.start(this.tickCount);
+        }
+    }
+
+    @Override
+    public void setOrderedToSit(boolean orderedToSit) {
+        super.setOrderedToSit(orderedToSit);
+        setInSittingPose(orderedToSit);
+
+        this.jumping = false;
+        this.navigation.stop();
+        setTarget(null);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(@NonNull EntityDataAccessor<?> accessor) {
+        if (DATA_FLAGS_ID.equals(accessor)) {
+            if (isInSittingPose()) {
+                if (this.tameAnimationState.isStarted()) {
+                    this.pendingSitAnimation = true;
+                    this.sitAnimationState.stop();
+                } else {
+                    this.sitAnimationState.startIfStopped(this.tickCount);
+                }
+            } else {
+                this.pendingSitAnimation = false;
+                this.sitAnimationState.stop();
+            }
+        }
+
+        super.onSyncedDataUpdated(accessor);
     }
 }

@@ -1,6 +1,9 @@
 package dev.turtywurty.tutorialmod.client.model;
 
 import dev.turtywurty.tutorialmod.Constants;
+import dev.turtywurty.tutorialmod.client.animations.ExampleEntityAnimations;
+import dev.turtywurty.tutorialmod.client.state.ExampleEntityRenderState;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -9,11 +12,10 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 import org.jspecify.annotations.NonNull;
 
-public class ExampleEntityModel extends EntityModel<LivingEntityRenderState> {
+public class ExampleEntityModel extends EntityModel<ExampleEntityRenderState> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Constants.id("example_entity"), "main");
 
     private final ModelPart main;
@@ -32,6 +34,10 @@ public class ExampleEntityModel extends EntityModel<LivingEntityRenderState> {
     private final ModelPart backLeft;
     private final ModelPart leg3;
 
+    private final KeyframeAnimation idleAnimation;
+    private final KeyframeAnimation tameAnimation;
+    private final KeyframeAnimation sitAnimation;
+
     public ExampleEntityModel(ModelPart root) {
         super(root);
         this.main = root.getChild("main");
@@ -49,6 +55,10 @@ public class ExampleEntityModel extends EntityModel<LivingEntityRenderState> {
         this.leg2 = this.backRight.getChild("leg2");
         this.backLeft = this.backLegs.getChild("backLeft");
         this.leg3 = this.backLeft.getChild("leg3");
+
+        this.idleAnimation = ExampleEntityAnimations.IDLE.bake(root);
+        this.tameAnimation = ExampleEntityAnimations.TAME.bake(root);
+        this.sitAnimation = ExampleEntityAnimations.SIT.bake(root);
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -133,16 +143,27 @@ public class ExampleEntityModel extends EntityModel<LivingEntityRenderState> {
     }
 
     @Override
-    public void setupAnim(@NonNull LivingEntityRenderState state) {
+    public void setupAnim(@NonNull ExampleEntityRenderState state) {
         super.setupAnim(state);
-        this.body.xRot = state.xRot * (float) (Math.PI / 180.0);
-        this.body.yRot = state.yRot * (float) (Math.PI / 180.0);
 
-        float walk = state.walkAnimationPos;
-        float speed = state.walkAnimationSpeed;
-        this.backRight.xRot = Mth.cos(walk * 0.6662F) * 1.4F * speed;
-        this.backLeft.xRot = Mth.cos(walk * 0.6662F + (float) Math.PI) * 1.4F * speed;
-        this.frontRight.xRot = Mth.cos(walk * 0.6662F + (float) Math.PI) * 1.4F * speed;
-        this.frontLeft.xRot = Mth.cos(walk * 0.6662F) * 1.4F * speed;
+        this.idleAnimation.apply(state.idleAnimationState, state.ageInTicks);
+        this.tameAnimation.apply(state.tameAnimationState, state.ageInTicks);
+        if (!state.tameAnimationState.isStarted()) {
+            this.sitAnimation.apply(state.sitAnimationState, state.ageInTicks);
+        }
+
+        if (!state.tameAnimationState.isStarted()) {
+            this.body.xRot = state.xRot * (float) (Math.PI / 180.0);
+            this.body.yRot = state.yRot * (float) (Math.PI / 180.0);
+        }
+
+        if (!state.tameAnimationState.isStarted() && !state.sitAnimationState.isStarted()) {
+            float walk = state.walkAnimationPos;
+            float speed = state.walkAnimationSpeed;
+            this.backRight.xRot = Mth.cos(walk * 0.6662F) * 1.4F * speed;
+            this.backLeft.xRot = Mth.cos(walk * 0.6662F + (float) Math.PI) * 1.4F * speed;
+            this.frontRight.xRot = Mth.cos(walk * 0.6662F + (float) Math.PI) * 1.4F * speed;
+            this.frontLeft.xRot = Mth.cos(walk * 0.6662F) * 1.4F * speed;
+        }
     }
 }
