@@ -1,11 +1,19 @@
 package dev.turtywurty.tutorialmod.services.client;
 
 import dev.turtywurty.tutorialmod.services.types.client.IClientRegistryHelper;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +45,11 @@ public final class FabricClientRegistryHelper implements IClientRegistryHelper {
         for (ModelLayerEntry entry : this.modelLayers) {
             entry.register(registrar);
         }
+    }
+
+    @Override
+    public <T extends AbstractContainerMenu, U extends Screen & MenuAccess<T>> void registerMenuScreen(MenuType<T> menuType, TriFunction<T, Inventory, Component, U> screenFactory) {
+        MenuScreens.register(menuType, screenFactory::apply);
     }
 
     private record EntityRendererEntry<T extends Entity>(EntityType<T> entityType, EntityRendererProvider<T> provider) {

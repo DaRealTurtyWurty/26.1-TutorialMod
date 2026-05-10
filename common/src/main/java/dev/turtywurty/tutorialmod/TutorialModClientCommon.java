@@ -1,6 +1,7 @@
 package dev.turtywurty.tutorialmod;
 
 import dev.turtywurty.tutorialmod.init.client.ModEntityRenderers;
+import dev.turtywurty.tutorialmod.init.client.ModMenuScreens;
 import dev.turtywurty.tutorialmod.init.client.ModModelLayers;
 
 public final class TutorialModClientCommon {
@@ -17,5 +18,6 @@ public final class TutorialModClientCommon {
 
         ModModelLayers.load();
         ModEntityRenderers.load();
+        ModMenuScreens.load();
     }
 }

@@ -2,9 +2,12 @@ package dev.turtywurty.tutorialmod.services;
 
 import com.mojang.serialization.MapCodec;
 import dev.turtywurty.tutorialmod.Constants;
+import dev.turtywurty.tutorialmod.menus.ExampleEntityMenu;
+import dev.turtywurty.tutorialmod.network.IntegerPayload;
 import dev.turtywurty.tutorialmod.services.types.IRegistryHelper;
 import dev.turtywurty.tutorialmod.services.util.RegistryHandle;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
+import net.fabricmc.fabric.api.menu.v1.ExtendedMenuType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -14,6 +17,8 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -129,6 +134,28 @@ public class FabricRegistryHelper implements IRegistryHelper {
 
             @Override
             public ConsumeEffect.Type<T> get() {
+                return registered;
+            }
+        };
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T extends AbstractContainerMenu> RegistryHandle<MenuType<T>> registerMenuType(String name, Class<T> menuClass) {
+        Identifier id = Constants.id(name);
+        MenuType<T> registered = Registry.register(BuiltInRegistries.MENU, id, (MenuType<T>) switch (name) {
+            case "example" -> new ExtendedMenuType<>(ExampleEntityMenu::new, IntegerPayload.STREAM_CODEC);
+            default -> throw new IllegalStateException("Unexpected value: " + name);
+        });
+
+        return new RegistryHandle<>() {
+            @Override
+            public Identifier id() {
+                return id;
+            }
+
+            @Override
+            public MenuType<T> get() {
                 return registered;
             }
         };

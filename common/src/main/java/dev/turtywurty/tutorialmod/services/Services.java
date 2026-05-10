@@ -2,6 +2,7 @@ package dev.turtywurty.tutorialmod.services;
 
 import dev.turtywurty.tutorialmod.Constants;
 import dev.turtywurty.tutorialmod.services.types.IAttributeRegistryHelper;
+import dev.turtywurty.tutorialmod.services.types.IMenuOpener;
 import dev.turtywurty.tutorialmod.services.types.IPlatformHelper;
 import dev.turtywurty.tutorialmod.services.types.IRegistryHelper;
 
@@ -11,6 +12,7 @@ public class Services {
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
     public static final IRegistryHelper REGISTRY = load(IRegistryHelper.class);
     public static final IAttributeRegistryHelper ATTRIBUTES = load(IAttributeRegistryHelper.class);
+    public static final IMenuOpener MENU_OPENER = load(IMenuOpener.class);
 
     public static <T> T load(Class<T> clazz) {
         final T loadedService = ServiceLoader.load(clazz, Services.class.getClassLoader())

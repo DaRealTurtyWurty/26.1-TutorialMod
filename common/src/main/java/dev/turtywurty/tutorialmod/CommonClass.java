@@ -32,5 +32,6 @@ public class CommonClass {
         ModEntityTypes.load();
         ModEntityAttributes.load();
         ModCreativeTabs.load();
+        ModMenuTypes.load();
     }
 }

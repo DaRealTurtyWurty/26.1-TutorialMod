@@ -1,11 +1,11 @@
 package dev.turtywurty.tutorialmod.entities;
 
 import dev.turtywurty.tutorialmod.init.ModItems;
+import dev.turtywurty.tutorialmod.services.Services;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -14,16 +14,20 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 @SuppressWarnings("resource")
-public class ExampleEntity extends TamableAnimal {
+public class ExampleEntity extends TamableAnimal implements Container {
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState tameAnimationState = new AnimationState();
     public final AnimationState sitAnimationState = new AnimationState();
 
     private boolean pendingSitAnimation;
+
+    private final SimpleContainer inventory = new SimpleContainer(18);
 
     public ExampleEntity(EntityType<? extends ExampleEntity> type, Level level) {
         super(type, level);
@@ -72,7 +76,12 @@ public class ExampleEntity extends TamableAnimal {
                 if (result.consumesAction() || !isOwnedBy(player))
                     return result;
 
-                setOrderedToSit(!isOrderedToSit());
+                if (!player.isSecondaryUseActive()) {
+                    setOrderedToSit(!isOrderedToSit());
+                } else {
+                    Services.MENU_OPENER.createMenuProviderForExampleEntity(player, this, getId());
+                }
+
                 return InteractionResult.SUCCESS;
             }
         }
@@ -144,5 +153,72 @@ public class ExampleEntity extends TamableAnimal {
         }
 
         super.onSyncedDataUpdated(accessor);
+    }
+
+    public SimpleContainer getInventory() {
+        return this.inventory;
+    }
+
+    @Override
+    protected void dropEquipment(@NonNull ServerLevel level) {
+        super.dropEquipment(level);
+        Containers.dropContents(level, this, this.inventory);
+    }
+
+    @Override
+    protected void addAdditionalSaveData(@NonNull ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        ContainerHelper.saveAllItems(output, this.inventory.getItems());
+    }
+
+    @Override
+    protected void readAdditionalSaveData(@NonNull ValueInput input) {
+        super.readAdditionalSaveData(input);
+        ContainerHelper.loadAllItems(input, this.inventory.getItems());
+    }
+
+    @Override
+    public int getContainerSize() {
+        return this.inventory.getContainerSize();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.inventory.isEmpty();
+    }
+
+    @Override
+    public @NonNull ItemStack getItem(int index) {
+        return this.inventory.getItem(index);
+    }
+
+    @Override
+    public @NonNull ItemStack removeItem(int index, int amount) {
+        return this.inventory.removeItem(index, amount);
+    }
+
+    @Override
+    public @NonNull ItemStack removeItemNoUpdate(int index) {
+        return this.inventory.removeItemNoUpdate(index);
+    }
+
+    @Override
+    public void setItem(int index, @NonNull ItemStack itemStack) {
+        this.inventory.setItem(index, itemStack);
+    }
+
+    @Override
+    public void setChanged() {
+        this.inventory.setChanged();
+    }
+
+    @Override
+    public boolean stillValid(@NonNull Player player) {
+        return this.inventory.stillValid(player);
+    }
+
+    @Override
+    public void clearContent() {
+        this.inventory.clearContent();
     }
 }
