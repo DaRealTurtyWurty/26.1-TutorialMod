@@ -2,6 +2,7 @@ package dev.turtywurty.tutorialmod;
 
 import dev.turtywurty.tutorialmod.init.*;
 import dev.turtywurty.tutorialmod.services.Services;
+import dev.turtywurty.tutorialmod.worldgen.TutorialModWorldgen;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Items;
 
@@ -33,5 +34,6 @@ public class CommonClass {
         ModEntityAttributes.load();
         ModCreativeTabs.load();
         ModMenuTypes.load();
+        TutorialModWorldgen.load();
     }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:blasting",
+  "category": "blocks",
+  "cookingtime": 75,
+  "experience": 0.8,
+  "group": "example",
+  "ingredient": "tutorialmod:example_nether_ore",
+  "result": {
+    "id": "tutorialmod:example_item"
+  }
+}

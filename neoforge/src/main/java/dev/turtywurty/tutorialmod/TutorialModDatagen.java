@@ -15,5 +15,6 @@ public final class TutorialModDatagen {
         event.createProvider(TutorialModLootTableProvider::new);
         event.createProvider(TutorialModEquipmentAssetProvider::new);
         event.createProvider(TutorialModRecipeProvider.Runner::new);
+        event.createProvider(TutorialModWorldgenProvider::new);
     }
 }

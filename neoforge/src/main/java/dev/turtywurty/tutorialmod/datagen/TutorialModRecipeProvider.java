@@ -8,9 +8,12 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.world.item.crafting.CookingBookCategory;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import org.jspecify.annotations.NonNull;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class TutorialModRecipeProvider extends RecipeProvider {
@@ -115,6 +118,15 @@ public class TutorialModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.EXAMPLE_ITEM.get()), has(ModItems.EXAMPLE_ITEM.get()))
                 .unlockedBy(getHasName(ModItems.EXAMPLE_ITEM2.get()), has(ModItems.EXAMPLE_ITEM2.get()))
                 .save(output);
+
+        List<ItemLike> exampleOres = List.of(ModBlocks.EXAMPLE_OVERWORLD_ORE.block().get(),
+                ModBlocks.EXAMPLE_DEEPSLATE_ORE.block().get(),
+                ModBlocks.EXAMPLE_NETHER_ORE.block().get(),
+                ModBlocks.EXAMPLE_END_ORE.block().get());
+        oreSmelting(exampleOres, RecipeCategory.MISC, CookingBookCategory.BLOCKS, ModItems.EXAMPLE_ITEM.get(),
+                0.7F, 150, "example");
+        oreBlasting(exampleOres, RecipeCategory.MISC, CookingBookCategory.BLOCKS, ModItems.EXAMPLE_ITEM.get(),
+                0.8F, 75, "example");
     }
 
     public static class Runner extends RecipeProvider.Runner {

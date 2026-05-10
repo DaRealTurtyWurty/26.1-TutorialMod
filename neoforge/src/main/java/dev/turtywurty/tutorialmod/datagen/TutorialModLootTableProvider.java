@@ -1,6 +1,7 @@
 package dev.turtywurty.tutorialmod.datagen;
 
 import dev.turtywurty.tutorialmod.init.ModBlocks;
+import dev.turtywurty.tutorialmod.init.ModItems;
 import dev.turtywurty.tutorialmod.services.NeoForgeRegistryHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -35,6 +36,10 @@ public class TutorialModLootTableProvider extends LootTableProvider {
         @Override
         protected void generate() {
             dropSelf(ModBlocks.EXAMPLE_BLOCK.block().get());
+            add(ModBlocks.EXAMPLE_OVERWORLD_ORE.block().get(), block -> createOreDrop(block, ModItems.EXAMPLE_ITEM.get()));
+            dropSelf(ModBlocks.EXAMPLE_DEEPSLATE_ORE.block().get());
+            add(ModBlocks.EXAMPLE_NETHER_ORE.block().get(), block -> createOreDrop(block, ModItems.EXAMPLE_ITEM.get()));
+            dropSelf(ModBlocks.EXAMPLE_END_ORE.block().get());
         }
 
         @Override
