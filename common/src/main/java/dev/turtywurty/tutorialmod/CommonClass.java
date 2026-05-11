@@ -31,6 +31,7 @@ public class CommonClass {
         ModConsumeEffectTypes.load();
         ModItems.load();
         ModEntityTypes.load();
+        ModEntitySpawns.load();
         ModEntityAttributes.load();
         ModCreativeTabs.load();
         ModMenuTypes.load();

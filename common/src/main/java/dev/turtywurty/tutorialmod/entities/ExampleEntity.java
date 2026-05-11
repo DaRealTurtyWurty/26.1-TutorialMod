@@ -2,9 +2,11 @@ package dev.turtywurty.tutorialmod.entities;
 
 import dev.turtywurty.tutorialmod.init.ModItems;
 import dev.turtywurty.tutorialmod.services.Services;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -14,6 +16,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.NonNull;
@@ -37,6 +40,10 @@ public class ExampleEntity extends TamableAnimal implements Container {
         return Animal.createAnimalAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
+    }
+
+    public static boolean canSpawn(EntityType<ExampleEntity> entityType, ServerLevelAccessor level, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+        return Animal.checkAnimalSpawnRules(entityType, level, spawnReason, pos, random);
     }
 
     @Override
@@ -70,6 +77,7 @@ public class ExampleEntity extends TamableAnimal implements Container {
                 tame(player);
                 setOrderedToSit(true);
                 level().broadcastEntityEvent(this, EntityEvent.TAMING_SUCCEEDED);
+                EntityType.PIG.spawn((ServerLevel) level(), blockPosition(), EntitySpawnReason.SPAWN_ITEM_USE);
                 return InteractionResult.SUCCESS;
             } else if (isTame()) {
                 InteractionResult result = super.mobInteract(player, hand);
@@ -89,15 +97,6 @@ public class ExampleEntity extends TamableAnimal implements Container {
         return isOwnedBy(player) || isTame() || itemStack.is(ModItems.EXAMPLE_FOOD.get())
                 ? InteractionResult.CONSUME
                 : InteractionResult.PASS;
-    }
-
-    @Override
-    protected void applyTamingSideEffects() {
-        super.applyTamingSideEffects();
-
-        if (!level().isClientSide()) {
-            EntityType.PIG.spawn((ServerLevel) level(), blockPosition(), EntitySpawnReason.SPAWN_ITEM_USE);
-        }
     }
 
     @Override

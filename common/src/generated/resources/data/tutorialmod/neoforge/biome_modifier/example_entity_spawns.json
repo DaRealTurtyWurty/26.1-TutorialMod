@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#minecraft:has_structure/village_plains",
+  "spawners": {
+    "type": "tutorialmod:example_entity",
+    "maxCount": 3,
+    "minCount": 1,
+    "weight": 12
+  }
+}

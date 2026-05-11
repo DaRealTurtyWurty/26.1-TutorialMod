@@ -1,7 +1,10 @@
 package dev.turtywurty.tutorialmod.worldgen;
 
+import dev.turtywurty.tutorialmod.init.ModEntitySpawns;
+import dev.turtywurty.tutorialmod.init.ModEntityTypes;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
 public final class TutorialModFabricWorldgen {
@@ -23,6 +26,14 @@ public final class TutorialModFabricWorldgen {
                 BiomeSelectors.foundInTheEnd(),
                 GenerationStep.Decoration.UNDERGROUND_ORES,
                 TutorialModWorldgen.EXAMPLE_END_ORE_PLACED
+        );
+        BiomeModifications.addSpawn(
+                BiomeSelectors.tag(BiomeTags.HAS_VILLAGE_PLAINS),
+                ModEntityTypes.EXAMPLE_ENTITY.get().getCategory(),
+                ModEntityTypes.EXAMPLE_ENTITY.get(),
+                ModEntitySpawns.EXAMPLE_ENTITY.weight(),
+                ModEntitySpawns.EXAMPLE_ENTITY.minGroupSize(),
+                ModEntitySpawns.EXAMPLE_ENTITY.maxGroupSize()
         );
     }
 }
