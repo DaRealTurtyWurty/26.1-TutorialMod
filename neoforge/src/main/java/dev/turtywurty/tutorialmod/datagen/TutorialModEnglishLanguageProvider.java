@@ -42,6 +42,7 @@ public class TutorialModEnglishLanguageProvider extends LanguageProvider {
         add(ModItems.EXAMPLE_BOOTS.get(), "Example Boots");
         add(ModCreativeTabs.EXAMPLE_TAB.get().getDisplayName(), "Example Tab");
         add(ModItems.EXAMPLE_FOOD.get(), "Example Food");
+        add(ModItems.EXAMPLE_ENTITY_SPAWN_EGG.get(), "Example Entity Spawn Egg");
     }
 
     private void add(Component component, String value) {

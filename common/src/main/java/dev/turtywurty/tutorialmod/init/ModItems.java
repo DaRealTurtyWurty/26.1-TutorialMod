@@ -2,10 +2,7 @@ package dev.turtywurty.tutorialmod.init;
 
 import dev.turtywurty.tutorialmod.services.Services;
 import dev.turtywurty.tutorialmod.services.util.RegistryHandle;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.equipment.ArmorType;
 
 public final class ModItems {
@@ -53,4 +50,7 @@ public final class ModItems {
 
     public static final RegistryHandle<Item> EXAMPLE_FOOD = Services.REGISTRY.registerItem("example_food",
             properties -> new Item(properties.food(ModFoods.EXAMPLE_FOOD_PROPERTIES, ModFoods.EXAMPLE_FOOD_CONSUMABLE)));
+
+    public static final RegistryHandle<SpawnEggItem> EXAMPLE_ENTITY_SPAWN_EGG = Services.REGISTRY.registerItem("example_entity_spawn_egg",
+            properties -> new SpawnEggItem(properties.spawnEgg(ModEntityTypes.EXAMPLE_ENTITY.get())));
 }
