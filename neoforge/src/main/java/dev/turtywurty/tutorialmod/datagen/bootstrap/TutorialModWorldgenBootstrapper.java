@@ -5,13 +5,17 @@ import dev.turtywurty.tutorialmod.worldgen.TutorialModWorldgen;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -41,6 +45,9 @@ public final class TutorialModWorldgenBootstrapper {
                         OreConfiguration.target(new BlockMatchTest(Blocks.END_STONE), ModBlocks.EXAMPLE_END_ORE.block().get().defaultBlockState())),
                         7,
                         0.0F)));
+
+        context.register(TutorialModWorldgen.EXAMPLE_FLOWER, new ConfiguredFeature<>(Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.EXAMPLE_FLOWER.block().get()))));
     }
 
     public static void bootstrapPlacedFeatures(BootstrapContext<PlacedFeature> context) {
@@ -69,5 +76,18 @@ public final class TutorialModWorldgenBootstrapper {
                         InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(20), VerticalAnchor.absolute(80)),
                         BiomeFilter.biome())));
+
+        context.register(TutorialModWorldgen.EXAMPLE_FLOWER_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(TutorialModWorldgen.EXAMPLE_FLOWER),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(32),
+                        InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP,
+                        BiomeFilter.biome(),
+                        CountPlacement.of(64),
+                        RandomOffsetPlacement.ofTriangle(6, 2),
+                        BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
+                )
+        ));
     }
 }

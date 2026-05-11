@@ -40,6 +40,8 @@ public class TutorialModLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.EXAMPLE_DEEPSLATE_ORE.block().get());
             add(ModBlocks.EXAMPLE_NETHER_ORE.block().get(), block -> createOreDrop(block, ModItems.EXAMPLE_ITEM.get()));
             dropSelf(ModBlocks.EXAMPLE_END_ORE.block().get());
+            dropSelf(ModBlocks.EXAMPLE_FLOWER.block().get());
+            dropPottedContents(ModBlocks.POTTED_EXAMPLE_FLOWER.get());
         }
 
         @Override

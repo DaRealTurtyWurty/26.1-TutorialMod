@@ -24,6 +24,7 @@ public class TutorialModModelProvider extends ModelProvider {
         blockModels.createTrivialCube(ModBlocks.EXAMPLE_DEEPSLATE_ORE.block().get());
         blockModels.createTrivialCube(ModBlocks.EXAMPLE_NETHER_ORE.block().get());
         blockModels.createTrivialCube(ModBlocks.EXAMPLE_END_ORE.block().get());
+        blockModels.createPlantWithDefaultItem(ModBlocks.EXAMPLE_FLOWER.block().get(), ModBlocks.POTTED_EXAMPLE_FLOWER.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 
         itemModels.generateFlatItem(ModItems.EXAMPLE_SWORD.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateSpear(ModItems.EXAMPLE_SPEAR.get());

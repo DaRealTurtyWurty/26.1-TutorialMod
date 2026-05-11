@@ -6,6 +6,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,7 +16,7 @@ public class TutorialModBlockTagProvider extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NonNull Provider provider) {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.EXAMPLE_BLOCK.block().get())
                 .add(ModBlocks.EXAMPLE_OVERWORLD_ORE.block().get())
@@ -28,5 +29,12 @@ public class TutorialModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.EXAMPLE_DEEPSLATE_ORE.block().get())
                 .add(ModBlocks.EXAMPLE_NETHER_ORE.block().get())
                 .add(ModBlocks.EXAMPLE_END_ORE.block().get());
+
+        tag(BlockTags.SMALL_FLOWERS)
+                .add(ModBlocks.EXAMPLE_FLOWER.block().get());
+        tag(BlockTags.BEE_ATTRACTIVE)
+                .add(ModBlocks.EXAMPLE_FLOWER.block().get());
+        tag(BlockTags.FLOWER_POTS)
+                .add(ModBlocks.POTTED_EXAMPLE_FLOWER.get());
     }
 }

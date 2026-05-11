@@ -10,10 +10,12 @@ public final class TutorialModWorldgen {
     public static final ResourceKey<ConfiguredFeature<?, ?>> EXAMPLE_OVERWORLD_ORE = configuredFeatureKey("example_overworld_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> EXAMPLE_NETHER_ORE = configuredFeatureKey("example_nether_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> EXAMPLE_END_ORE = configuredFeatureKey("example_end_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EXAMPLE_FLOWER = configuredFeatureKey("example_flower");
 
     public static final ResourceKey<PlacedFeature> EXAMPLE_OVERWORLD_ORE_PLACED = placedFeatureKey("example_overworld_ore");
     public static final ResourceKey<PlacedFeature> EXAMPLE_NETHER_ORE_PLACED = placedFeatureKey("example_nether_ore");
     public static final ResourceKey<PlacedFeature> EXAMPLE_END_ORE_PLACED = placedFeatureKey("example_end_ore");
+    public static final ResourceKey<PlacedFeature> EXAMPLE_FLOWER_PLACED = placedFeatureKey("example_flower");
 
     private TutorialModWorldgen() {
     }

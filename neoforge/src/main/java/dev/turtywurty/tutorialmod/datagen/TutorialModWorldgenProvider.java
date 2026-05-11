@@ -39,6 +39,7 @@ public final class TutorialModWorldgenProvider extends DatapackBuiltinEntriesPro
     private static final ResourceKey<BiomeModifier> EXAMPLE_NETHER_ORE_MODIFIER = biomeModifierKey("example_nether_ore");
     private static final ResourceKey<BiomeModifier> EXAMPLE_END_ORE_MODIFIER = biomeModifierKey("example_end_ore");
     private static final ResourceKey<BiomeModifier> EXAMPLE_ENTITY_SPAWNS = biomeModifierKey("example_entity_spawns");
+    private static final ResourceKey<BiomeModifier> EXAMPLE_FLOWER_MODIFIER = biomeModifierKey("example_flower");
 
     public TutorialModWorldgenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(Constants.MOD_ID));
@@ -73,6 +74,12 @@ public final class TutorialModWorldgenProvider extends DatapackBuiltinEntriesPro
                                 ModEntitySpawns.EXAMPLE_ENTITY.weight()
                         )
                 ))
+        ));
+
+        context.register(EXAMPLE_FLOWER_MODIFIER, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(TutorialModWorldgen.EXAMPLE_FLOWER_PLACED)),
+                GenerationStep.Decoration.VEGETAL_DECORATION
         ));
     }
 

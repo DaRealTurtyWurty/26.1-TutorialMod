@@ -27,6 +27,7 @@ public final class TutorialModFabricWorldgen {
                 GenerationStep.Decoration.UNDERGROUND_ORES,
                 TutorialModWorldgen.EXAMPLE_END_ORE_PLACED
         );
+
         BiomeModifications.addSpawn(
                 BiomeSelectors.tag(BiomeTags.HAS_VILLAGE_PLAINS),
                 ModEntityTypes.EXAMPLE_ENTITY.get().getCategory(),
@@ -34,6 +35,12 @@ public final class TutorialModFabricWorldgen {
                 ModEntitySpawns.EXAMPLE_ENTITY.weight(),
                 ModEntitySpawns.EXAMPLE_ENTITY.minGroupSize(),
                 ModEntitySpawns.EXAMPLE_ENTITY.maxGroupSize()
+        );
+
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInOverworld(),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
+                TutorialModWorldgen.EXAMPLE_FLOWER_PLACED
         );
     }
 }
